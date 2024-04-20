@@ -31,4 +31,9 @@ _________
 4. Select in Tasklist the picture to downloaded
 5. Look for Picture in Download-Folder
 6. profit
- 
+
+
+## Architecture Overview
+
+![ConsultingChallenge_Architecture](https://github.com/MarcelKleber/ConsultingChallenge/assets/167547660/bdf34742-7a92-4e95-92ff-3591ae3f5483)
+
