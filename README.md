@@ -6,8 +6,10 @@ App for the Camunda Consulting Challenge
 - deploys the bpmn "Process_ConsultingChallenge.bpmn"
 - deploy the form "form_imageSelection.form"
 
-## Module 2: Download Picture of a dog with API
-- Downloads a picture from https://place.dog and saves it in Download-Folder of current user
+## Module 2: Download Picture from a URL and saves it locally
+- can download a picture from a given URL; given animal name is used for file name
+- saves it in Download-Folder of current user
+- in isolated execution downloads a picture from https://place.dog
 
 ## Module 3: Start instance with REST Api via webhook
 - starts instance of process "Process_ConsultingChallenge"
