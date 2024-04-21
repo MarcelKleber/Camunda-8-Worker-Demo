@@ -9,7 +9,7 @@ App for the Camunda Consulting Challenge
 ## Module 2: Download Picture from a URL and saves it locally
 - can download a picture from a given URL; given animal name is used for file name
 - saves it in Download-Folder of current user
-- in isolated execution downloads a picture from https://place.dog
+- in isolated execution downloads a picture from https://place.dog as test default
 
 ## Module 3: Start instance with REST Api via webhook
 - starts instance of process "Process_ConsultingChallenge"
