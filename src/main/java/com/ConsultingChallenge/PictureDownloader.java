@@ -10,12 +10,28 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
+//Method to download a picture from a given URL
 
-public class DownloadPictureAPI {
+public class PictureDownloader {
+    
     public static void main(String[] args) {
+        
+        //Test values
+        String imageUrl ="https://place.dog/300/200";
+        String animal ="dog";
+
+        try {
+            downloadImage(imageUrl, animal);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void downloadImage(String imageUrl, String animal) throws IOException {
+            
         try {
             // Open a connection to the URL
-            URL url = new URL("https://place.dog/300/200");
+            URL url = new URL(imageUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
@@ -36,7 +52,7 @@ public class DownloadPictureAPI {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HmmssSSS");
                     String timestamp = now.format(formatter);
                 
-                String fileName = "image_downloaded_dog_"+ timestamp+ "_withAPICall.png";
+                String fileName = "image_downloaded_" + animal + "_"+ timestamp+ ".png";
                 File outputFile = new File(downloadsFolder, fileName);
                 FileOutputStream outputStream = new FileOutputStream(outputFile);
 
@@ -56,7 +72,6 @@ public class DownloadPictureAPI {
                 } else {
                 System.err.println("Failed to download image. HTTP response code: " + responseCode);
             }
-
           
         } catch (IOException e) {
             System.err.println("Error while downloading image: " + e.getMessage());

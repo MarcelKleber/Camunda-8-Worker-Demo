@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1uhs3ux" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="74f16d4" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0" camunda:diagramRelationId="d0812cd7-5e91-4635-9089-22c53760c293">
   <bpmn:process id="main_AnimalPictureDownload" name="main_AnimalPictureDownload" isExecutable="true">
-    <bpmn:documentation>Based on a user’s selection the process fetches a picture of either a cat, a dog or
-a bear
-
-used APIS:
-● Cats: https://placekitten.com/
-● Dogs: https://place.dog/
-● Bears: https://placebear.com/</bpmn:documentation>
     <bpmn:sequenceFlow id="Flow_1npg65n" sourceRef="StartEvent_challengeInitiated" targetRef="Gateway_06n38fn" />
     <bpmn:userTask id="Activity_ImageSelection" name="Choose picture to download">
       <bpmn:extensionElements>
@@ -22,10 +15,19 @@ used APIS:
     <bpmn:sequenceFlow id="Flow_1hiaziy" sourceRef="Activity_ImageSelection" targetRef="Activity_fetchImage" />
     <bpmn:sequenceFlow id="Flow_15wvjkh" sourceRef="Activity_fetchImage" targetRef="Event_pictureDownloaded" />
     <bpmn:serviceTask id="Activity_fetchImage" name="Download picture">
+      <bpmn:documentation>Based on a user’s selection the process fetches a picture of either a cat, a dog or
+a bear
+
+Method: HTTP Get
+used URLs:
+● Cats: https://placekitten.com/
+● Dogs: https://place.dog/
+● Bears: https://placebear.com/</bpmn:documentation>
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="DownloadPictureWorker" retries="3" />
         <zeebe:ioMapping>
           <zeebe:input source="=select_picture" target="select_picture" />
+          <zeebe:output source="=result" target="result" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1hiaziy</bpmn:incoming>
@@ -47,7 +49,7 @@ used APIS:
         <bpmn:terminateEventDefinition id="TerminateEventDefinition_027e0z3" />
       </bpmn:endEvent>
     </bpmn:subProcess>
-    <bpmn:endEvent id="Event_EscalateError" name="escalate to XY">
+    <bpmn:endEvent id="Event_EscalateError" name="Error Escalation">
       <bpmn:incoming>Flow_0ebay0i</bpmn:incoming>
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_1039t81" escalationRef="Escalation_0gqnihf" />
     </bpmn:endEvent>
@@ -89,12 +91,12 @@ used APIS:
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_1npg65n</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:endEvent id="Event_pictureDownloaded" name="Dog Picture downloaded">
+    <bpmn:endEvent id="Event_pictureDownloaded" name="Picture downloaded">
       <bpmn:incoming>Flow_15wvjkh</bpmn:incoming>
       <bpmn:terminateEventDefinition id="TerminateEventDefinition_1pxg8oh" />
     </bpmn:endEvent>
     <bpmn:textAnnotation id="TextAnnotation_0htq5n9">
-      <bpmn:text>1. Downloads based in dropdown "select_picture"
+      <bpmn:text>1. Downloads based on dropdown "select_picture"
 2. Saves picture to "Downloads" folder
 
 for used API see Element Documenation</bpmn:text>
@@ -161,7 +163,7 @@ for used API see Element Documenation</bpmn:text>
       <bpmndi:BPMNShape id="Event_17g6m80_di" bpmnElement="Event_EscalateError">
         <dc:Bounds x="572" y="322" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="554" y="365" width="72" height="14" />
+          <dc:Bounds x="552" y="365" width="78" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1b1jzb6_di" bpmnElement="Gateway_06n38fn">
@@ -188,11 +190,11 @@ for used API see Element Documenation</bpmn:text>
       <bpmndi:BPMNShape id="Event_1b532jm_di" bpmnElement="Event_pictureDownloaded">
         <dc:Bounds x="742" y="199" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="730" y="242" width="61" height="27" />
+          <dc:Bounds x="730" y="242" width="62" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0htq5n9_di" bpmnElement="TextAnnotation_0htq5n9">
-        <dc:Bounds x="490" y="56" width="260" height="84" />
+        <dc:Bounds x="490" y="56" width="300" height="64" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_10gssbx_di" bpmnElement="TextAnnotation_10gssbx">
@@ -243,7 +245,7 @@ for used API see Element Documenation</bpmn:text>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0adc6db_di" bpmnElement="Association_0adc6db">
         <di:waypoint x="540" y="177" />
-        <di:waypoint x="540" y="140" />
+        <di:waypoint x="540" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_131mpye_di" bpmnElement="Association_131mpye">
         <di:waypoint x="380" y="177" />
