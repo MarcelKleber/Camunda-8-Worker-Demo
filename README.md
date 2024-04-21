@@ -2,7 +2,7 @@
 App for the Camunda Consulting Challenge
 
 ## Module 1: Deploy Process
-- IMPORTANT: Change credentials for C8 local/saas if necessary
+- IMPORTANT: Change properties for C8 local/saas if necessary
 - deploys the bpmn "Process_ConsultingChallenge.bpmn"
 - deploy the form "form_imageSelection.form"
 
@@ -15,7 +15,7 @@ App for the Camunda Consulting Challenge
 - starts instance of process "Process_ConsultingChallenge"
 
 ## Module 4: DownloadPictureWorker with Handler
-- IMPORTANT: Change credentials for C8 local/saas if necessary
+- IMPORTANT: Change properties for C8 local/saas if necessary
 
 - zeebe client gets startet und job worker "DownloadPictureWorker" activated
 - To stop worker: type "exit"
@@ -27,12 +27,13 @@ _________
 
 ## How to Run the Process "ConsultingChallenge"
 
-1. Run Module 1 to deploy the bpmn and form
-2. Run Module 3 to start instance
-3. Run Module 4 to start worker and handler
-4. Select in Tasklist the picture to downloaded
-5. Look for Picture in Download-Folder
-6. profit
+1. If applicable: change credentials in credentials.properties
+2. Run Module 1 to deploy the bpmn and form
+3. Run Module 3 to start instance
+4. Run Module 4 to start worker and handler
+5. Select in Tasklist the picture to downloaded
+6. Look for Picture in Download-Folder
+7. profit
 
 
 ## Architecture Overview
