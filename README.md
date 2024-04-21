@@ -38,6 +38,10 @@ _________
 
 ## Architecture Overview
 
-![ConsultingChallenge_Architecture](https://github.com/MarcelKleber/ConsultingChallenge/assets/167547660/1ba9db17-8ef8-4bca-8759-7ab0714e48ec)
+![ConsultingChallenge_Architecture](https://github.com/MarcelKleber/ConsultingChallenge/assets/167547660/e87503f1-17a9-4808-afb5-f6de143b5601)
+
+
+
+
 
 
