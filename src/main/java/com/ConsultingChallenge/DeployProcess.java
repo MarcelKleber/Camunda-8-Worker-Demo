@@ -1,6 +1,10 @@
 package com.ConsultingChallenge;
                 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
+import java.util.Properties;
+
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.DeploymentEvent;
 import io.camunda.zeebe.client.impl.oauth.OAuthCredentialsProvider;
@@ -8,14 +12,25 @@ import io.camunda.zeebe.client.impl.oauth.OAuthCredentialsProviderBuilder;
     
 public class DeployProcess {
     
-    
+        //load credentials from credentials.properties
+	    private static final Properties properties = new Properties();
+
+	    static {
+		try (InputStream input = DeployProcess.class.getClassLoader().getResourceAsStream("credentials.properties")) {
+			properties.load(input);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        }
+	
         //Zeebe Client Credentials
-        private static final String zeebeGrpc = "grpcs://53e9327a-4777-4e0a-bb6d-1bb82a6b7f31.bru-2.zeebe.camunda.io:443";
-        private static final String zeebeRest = "https://bru-2.zeebe.camunda.io/53e9327a-4777-4e0a-bb6d-1bb82a6b7f31";
-        private static final String audience = "zeebe.camunda.io";
-        private static final String clientId = "wWWQjpeV5zryVHPbWjgKE8jex336L91e";
-        private static final String clientSecret = "qZyae8U0NT08~q7lZaeAL6x4m8cNxAHG6C09.KACMYs3DjM766I6.HGHvmsTGq4d";
-        private static final String oAuthAPI = "https://login.cloud.camunda.io/oauth/token";
+        static String zeebeGrpc = properties.getProperty("zeebeGrpc");
+        static String zeebeRest = properties.getProperty("zeebeRest");
+        static String audience = properties.getProperty("audience");
+        static String clientId = properties.getProperty("clientId");
+        static String clientSecret = properties.getProperty("clientSecret");
+        static String oAuthAPI = properties.getProperty("oAuthAPI");
+
     
                
         //Process Details for the challenge
