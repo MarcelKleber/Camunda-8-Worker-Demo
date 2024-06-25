@@ -1,5 +1,5 @@
-# Camunda Consulting Challenge
-App for the Camunda Consulting Challenge
+# Camunda 8 Worker Demo
+App for an Camunda 8 Worker Demo
 
 ## Module 1: Deploy Process
 - IMPORTANT: Change properties for C8 local/saas if necessary
